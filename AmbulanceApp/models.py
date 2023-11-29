@@ -9,6 +9,7 @@ class User(models.Model):
         ('F', 'Female'),
         ('O', 'Other'),
     ]
+    id = models.AutoField(primary_key=True)
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     email = models.EmailField()
@@ -28,15 +29,16 @@ class Ambulance(models.Model):
         ('O', 'Other'),
     ]
     AMBULANCE_TYPE = [
-        ('Basic', 'Basic Life Support Ambulance'),
-        ('Advance', 'Advance Life Support Ambulance'),
-        ('Patient', 'Patient Transfer Ambulance'),
-        ('Mortuary', 'Mortuary Ambulance'),
+        ('Basic Life Support Ambulance', 'Basic Life Support Ambulance'),
+        ('Advance Life Support Ambulance', 'Advance Life Support Ambulance'),
+        ('Patient Transfer Ambulance', 'Patient Transfer Ambulance'),
+        ('Mortuary Ambulance', 'Mortuary Ambulance'),
     ]
     STATUS = [
-        ('Active', 'Available'),
-        ('Inactive', 'Unavailable'),
+        ('Available', 'Available'),
+        ('Unavailable', 'Unavailable'),
     ]
+    id = models.AutoField(primary_key=True)
     firstname = models.CharField(max_length=80)
     lastname = models.CharField(max_length=100)
     age = models.IntegerField(default=18)
@@ -51,3 +53,4 @@ class Ambulance(models.Model):
 
     def __str__(self):
         return self.firstname + " " + self.lastname
+

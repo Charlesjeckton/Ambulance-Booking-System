@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from AmbulanceApp.models import User
 from AmbulanceApp.models import Ambulance
+from AmbulanceApp.forms import UserForm, AmbulanceForm
 
 
 # Create your views here.
@@ -20,6 +21,21 @@ def user_login(request):
     return render(request, 'user_login.html')
 
 
+def edit(request, id):
+    user = User.objects.get(id=id)
+    return render(request, 'update_profile.html', {'user': user})
+
+
+def update(request, id):
+    user = User.objects.get(id=id)
+    form = UserForm(request.POST, instance=user)
+    if form.is_valid():
+        form.save()
+        return redirect('/about')
+    else:
+        return render(request, 'update_profile.html', {'user': user})
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -29,7 +45,8 @@ def about(request):
 
 
 def ambulance(request):
-    return render(request, 'ambulances.html')
+    ambulances = Ambulance.objects.all()
+    return render(request, 'ambulances.html', {'ambulance': ambulances})
 
 
 def booked(request):
@@ -50,12 +67,35 @@ def update_profile(request):
 
 def ambulance_register(request):
     if request.method == 'POST':
-        ambulance_driver = Ambulance(firstname=request.POST['firstname'], lastname=request.POST['lastname'],
-                                     username=request.POST['username'], password=request.POST['password'])
-        ambulance_driver.save()
+        firstname = request.POST.get('firstname')
+        lastname = request.POST.get('lastname')
+        age = request.POST.get('age')
+        Ambulance_No = request.POST.get('Ambulance_No')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        Phone_number = request.POST.get('Phone_number')
+        Gender = request.POST.get('Gender')
+        Ambulance_type = request.POST.get('Ambulance_type')
+        Status = request.POST.get('Status')
+
+        driver = Ambulance.objects.create(
+            firstname=firstname,
+            lastname=lastname,
+            age=age,
+            Ambulance_No=Ambulance_No,
+            email=email,
+            username=username,
+            password=password,
+            Phone_number=Phone_number,
+            Gender=Gender,
+            Ambulance_type=Ambulance_type,
+            Status=Status,
+        )
+        # You can perform additional actions if needed, e.g., redirect to a success page.
         return redirect('/ambulance_login')
-    else:
-        return render(request, 'ambulance_register.html')
+
+    return render(request, 'ambulance_register.html')
 
 
 def ambulance_login(request):
@@ -80,5 +120,3 @@ def near_hospitals(request):
 
 def driver_profile(request):
     return render(request, 'driver_profile.html')
-
-

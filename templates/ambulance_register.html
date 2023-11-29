@@ -18,91 +18,97 @@
 <div class="container-fluid">
     <h1 class="form-title">Driver Registration</h1>
     <form method="POST" action="{% url 'ambulance_register' %}">
-    {% csrf_token %}
-    <div class="main-user-info">
-        <div class="user-input-box">
-            <label for="firstname">First Name</label>
-            <input type="text"
-                   id="firstname"
-                   name="firstname"
-                   placeholder="Enter First Name"/>
-        </div>
-        <div class="user-input-box">
-            <label for="lastname">Last Name</label>
-            <input type="text"
-                   id="lastname"
-                   name="lastname"
-                   placeholder="Enter Last Name"/>
-        </div>
-        <div class="user-input-box">
-            <label for="Phone_number">Phone Number</label>
-            <input type="text"
-                   id="Phone_number"
-                   name="Phone_number"
-                   placeholder="Enter Phone Number"/>
-        </div>
-        <div class="user-input-box">
-            <label for="email">Email Address</label>
-            <input type="email"
-                   id="email"
-                   name="email"
-                   placeholder="Enter Email"/>
-        </div>
-        <div class="user-input-box">
-            <label for="age">Age</label>
-            <input type="number"
-                   id="age"
-                   name="age"
-                   placeholder="Enter Age"/>
-        </div>
-        <div class="user-input-box">
-            <label for="Ambulance_No">Ambulance Number</label>
-            <input type="text"
-                   id="Ambulance_No"
-                   name="Ambulance_No"
-                   placeholder="Enter Ambulance Number"/>
+        {% csrf_token %}
+        <div class="main-user-info">
+            <div class="user-input-box">
+                <label for="firstname">First Name</label>
+                <input type="text"
+                       id="firstname"
+                       name="firstname"
+                       required
+                       placeholder="Enter First Name"/>
+            </div>
+            <div class="user-input-box">
+                <label for="lastname">Last Name</label>
+                <input type="text"
+                       id="lastname"
+                       name="lastname"
+                       required
+                       placeholder="Enter Last Name"/>
+            </div>
+            <div class="user-input-box">
+                <label for="Phone_number">Phone Number</label>
+                <input type="text"
+                       id="Phone_number"
+                       name="Phone_number"
+                       required
+                       placeholder="Enter Phone Number"/>
+            </div>
+            <div class="user-input-box">
+                <label for="email">Email Address</label>
+                <input type="email"
+                       id="email"
+                       name="email"
+                       required
+                       placeholder="Enter Email"/>
+            </div>
+            <div class="user-input-box">
+                <label for="age">Age</label>
+                <input type="number"
+                       id="age"
+                       name="age"
+                       required
+                       placeholder="Enter Age"/>
+            </div>
+            <div class="user-input-box">
+                <label for="Ambulance_No">Ambulance Number</label>
+                <input type="text"
+                       id="Ambulance_No"
+                       name="Ambulance_No"
+                       required
+                       placeholder="Enter Ambulance Number"/>
+            </div>
+
+            <div class="user-input-box">
+                <label for="Ambulance_type">Ambulance Type</label>
+                <select name="Ambulance_type" id="Ambulance_type" required>
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="Basic Life Support Ambulance">Basic Life Support Ambulance</option>
+                    <option value="Advance Life Support Ambulance">Advance Life Support Ambulance</option>
+                    <option value="Patient Transfer Ambulance">Patient Transfer Ambulance</option>
+                    <option value="Mortuary Ambulance">Mortuary Ambulance</option>
+                </select>
+            </div>
+
+            <div class="user-input-box">
+                <label for="Status">Ambulance Status</label>
+                <select name="Status" id="Status" required>
+                    <option value="" disabled selected>Choose...</option>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                </select>
+            </div>
+
+
+            <div class="user-input-box">
+                <label for="username">Username</label>
+                <input type="text"
+                       id="username"
+                       name="username"
+                       required
+                       placeholder="Enter Username"/>
+            </div>
+            <div class="user-input-box">
+                <label for="password">Password</label>
+                <input type="password"
+                       id="password"
+                       name="password"
+                       required
+                       placeholder="Enter Password"/>
+            </div>
         </div>
 
         <div class="user-input-box">
-            <label for="Ambulance_type">Ambulance Type</label>
-            <select name="Ambulance_type" id="Ambulance_type">
-                <option value="" disabled selected>Choose...</option>
-                <option value="Basic">Basic Life Support Ambulance</option>
-                <option value="Advance">Advance Life Support Ambulance</option>
-                <option value="Patient">Patient Transfer Ambulance</option>
-                <option value="Mortuary">Mortuary Ambulance</option>
-            </select>
-
-        </div>
-
-        <div class="user-input-box">
-            <label for="Status">Ambulance Status</label>
-            <select name="Status" id="Status">
-                <option value="" disabled selected>Choose...</option>
-                <option value="Active">Available</option>
-                <option value="Inactive">Unavailable</option>
-
-            </select>
-
-        </div>
-
-        <div class="user-input-box">
-            <label for="username">Username</label>
-            <input type="text"
-                   id="username"
-                   name="username"
-                   placeholder="Enter Username"/>
-        </div>
-        <div class="user-input-box">
-            <label for="password">Password</label>
-            <input type="password"
-                   id="password"
-                   name="password"
-                   placeholder="Enter Password"/>
-        </div>
-    </div>
-
-    <div class="user-input-box">
             <label for="Gender">Gender</label>
             <select name="Gender" id="Gender" required>
                 <option value="" disabled selected>Choose...</option>
@@ -113,12 +119,12 @@
 
         </div>
 
-    <div class="form-submit-btn">
-        <input type="submit" value="Register">
-    </div>
+        <div class="form-submit-btn">
+            <input type="submit" value="Register">
+        </div>
         <a href="{% url 'ambulance_login' %}" class="already">
-        You already have an account? Login here.</a>
-</form>
+            You already have an account? Login here.</a>
+    </form>
 </div>
 
 </body>

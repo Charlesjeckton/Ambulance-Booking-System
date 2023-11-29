@@ -7,3 +7,4 @@ from AmbulanceApp.models import Ambulance
 
 admin.site.register(User)
 admin.site.register(Ambulance)
+

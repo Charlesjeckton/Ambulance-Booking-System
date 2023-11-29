@@ -12,7 +12,6 @@ urlpatterns = [
     path('booked_ambulances/', views.booked, name='booked'),
     path('nearby_hospitals/', views.hospitals, name='hospitals'),
     path('services/', views.services, name='services'),
-    path('update_profile/', views.update_profile, name='update_profile'),
     path('ambulance_register/', views.ambulance_register, name='ambulance_register'),
     path('ambulance_login/', views.ambulance_login, name='ambulance_login'),
     path('booking_request/', views.booking_request, name='booking_request'),
@@ -20,5 +19,8 @@ urlpatterns = [
     path('ambulance_status/', views.ambulance_status, name='ambulance_status'),
     path('driver_profile/', views.driver_profile, name='driver_profile'),
     path('near_hospitals/', views.near_hospitals, name='near_hospitals'),
+    path('edit/<int:id>', views.edit),
+    path('update/<int:id>', views.update_profile, name='update_profile'),
+
 
 ]
