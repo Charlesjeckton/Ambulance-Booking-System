@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from AmbulanceApp.models import User
 from AmbulanceApp.models import Ambulance
 from AmbulanceApp.forms import UserForm, AmbulanceForm
+#import auth for authentication
+from django.contrib import messages ,auth 
+# import login_required decorator
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -18,6 +23,17 @@ def user_register(request):
 
 
 def user_login(request):
+    if request.method == 'POST':
+        uname=request.POST.get('username')
+        password=request.POST.get('password')
+        user=auth.authenticate(username=uname,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('')
+        else:
+            messages.info(request, 'Credentials Invalid')
+            return redirect ('login')
+        
     return render(request, 'user_login.html')
 
 
@@ -43,7 +59,10 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+#use login required decorator to prevent access to the page without login
+#use login_url to redirect to login page if the person has not logged in 
 
+@login_required(login_url='/user_login')
 def ambulance(request):
     ambulances = Ambulance.objects.all()
     return render(request, 'ambulances.html', {'ambulance': ambulances})
